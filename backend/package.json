@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch src/server.js"
+    "dev": "node --watch src/server.js",
+    "build": "npm run build --prefix admin",
+    "start": "node src/server.js"
   },
   "author": "",
   "license": "ISC",
