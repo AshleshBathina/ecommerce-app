@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "dev": "node --watch src/server.js",
-    "build": "npm run build --prefix admin",
     "start": "node src/server.js"
   },
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@clerk/clerk-react": "^5.58.0",
     "dotenv": "^17.2.3",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "mongoose": "^9.0.1"
   }
 }

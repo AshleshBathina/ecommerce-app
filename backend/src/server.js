@@ -1,10 +1,15 @@
 import express from "express";
 import path from "path";
+
+import { clerkMiddleware } from "@clerk/express"
 import { ENV } from "./config/env.js";
+import { connectDB } from "./config/db.js";
 
 const app = express();
 
 const __dirname = path.resolve();
+
+app.use(clerkMiddleware());
 
 const PORT = process.env.PORT || 3000;
 
@@ -23,6 +28,7 @@ if (ENV.NODE_ENV === "production") {
 }
 
 app.listen(ENV.PORT, () => {
-  console.log(`Server is up and running on port ${PORT}`);
+  console.log(`✅ Server is up and running on port ${PORT}`);
+  connectDB();
 });
 
