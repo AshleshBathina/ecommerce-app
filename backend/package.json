@@ -12,6 +12,7 @@
   "type": "module",
   "dependencies": {
     "@clerk/clerk-react": "^5.58.0",
+    "@clerk/express": "^1.7.55",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "mongoose": "^9.0.1"
