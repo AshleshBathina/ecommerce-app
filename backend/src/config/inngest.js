@@ -5,7 +5,6 @@ import { User } from "../models/user.js"
 
 export const inngest = new Inngest({
   id: "ecommerce-app"
-
 })
 
 const syncUser = inngest.createFunction(
