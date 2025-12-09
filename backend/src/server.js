@@ -8,6 +8,8 @@ import { connectDB } from "./config/db.js";
 import { serve } from "inngest/express";
 import { functions, inngest } from "./config/inngest.js";
 
+import adminRouter from "./routes/adminRouter.js"
+
 const app = express();
 
 const __dirname = path.resolve();
@@ -15,6 +17,8 @@ app.use(express.json());
 app.use(clerkMiddleware());
 
 app.use("/api/inngest", serve({ client: inngest, functions }))
+
+app.use("/api/admin", adminRouter)
 
 const PORT = process.env.PORT || 3000;
 
