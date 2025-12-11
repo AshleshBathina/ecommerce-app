@@ -36,8 +36,67 @@ export async function createProduct(req, res) {
 }
 
 
-export async function getAllProducts(req, res) { }
+export async function getAllProducts(req, res) {
+  try {
+    //-1 means most recent products first
+    const products = await Product.find().sort({ createdAt: -1 });
+    res.status(200).send(products);
+  } catch (error) {
+    console.error("Error fetching products", error);
+    res.status(404).json({ message: "Internal server error" });
+  }
+}
 
-export async function updateProduct(req, res) { }
+export async function updateProduct(req, res) {
+  try {
+    const { id } = req.params;
+    const { name, description, price, stock, category } = req.body;
 
-export async function deleteProduct(req, res) { }
+    const product = await Product.findById(id);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    if (name) product.name = name;
+    if (description) product.description = description;
+    if (price) product.price = price;
+    if (stock) product.stock = stock;
+    if (category) product.category = category;
+
+    if (req.files && req.files.length > 0) {
+      if (req.files.length > 3) {
+        return res.status(400).json({ message: "Maximum 3 images allowed" });
+      }
+
+      const uploadPromises = req.files.map(file => {
+        return cloudinary.uploader.upload(file.path, {
+          folder: "products",
+        })
+      });
+
+      const uploadResults = await Promise.all(uploadPromises);
+      product.images = uploadResults.map(result => result.secure_url)
+    }
+
+    await product.save()
+    res.status(200).json(product)
+
+  } catch (error) {
+    console.error("Error updating products", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+export async function deleteProduct(req, res) {
+  try {
+    const { id } = req.params;
+
+    const deleteProduct = await Product.deleteOne({ _id: id });
+
+    res.status(200).json({ message: "Product deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting products", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}

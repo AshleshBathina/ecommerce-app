@@ -10,7 +10,7 @@ router.use(protectRoute, adminOnly)
 
 router.post("/products", upload.array("images", 3), createProduct);
 router.get("/products", getAllProducts);
-router.put("/products", upload.array("images", 3), updateProduct);
+router.put("/products/:id", upload.array("images", 3), updateProduct);
 router.delete("/products", deleteProduct);
 
 export default router
