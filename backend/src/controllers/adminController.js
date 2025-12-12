@@ -1,5 +1,7 @@
 import cloudinary from "../config/cloudinary.js"
-import Product from "../models/product.js"
+import { Product } from "../models/product.js"
+import { Order } from "../models/order.js"
+import { User } from "../models/user.js"
 
 export async function createProduct(req, res) {
   try {
@@ -34,7 +36,6 @@ export async function createProduct(req, res) {
     res.status(500).json({ message: "Internal server error" });
   }
 }
-
 
 export async function getAllProducts(req, res) {
   try {
@@ -98,5 +99,87 @@ export async function deleteProduct(req, res) {
   } catch (error) {
     console.error("Error deleting products", error);
     res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+export async function getAllOrders(req, res) {
+  try {
+    const orders = (await Order.find().populate("user", "name, email").populate("orderItems.product")).toSorted({ createdAt: -1 })
+
+    res.status(200).json({ orders });
+  } catch (error) {
+    console.error("Error in getAllOrders controllers:", error)
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+export async function updateOrderStatus(req, res) {
+  try {
+    const { orderId } = req.params;
+    const { status } = req.status;
+
+    if (!["pending", "shipped", "delivered"].includes(status
+    )) {
+      return res.status(400).json({ error: "Invalid status" })
+    }
+
+    const order = await Order.findById(orderId);
+    if (!order) {
+      return res.status(404).json({ error: "Order not found" })
+    }
+
+    order.status = status;
+
+    if (status === "shipped" && !order.shippedAt) {
+      order.shippedAt = new Date();
+    }
+
+    if (status === "delivered" && !order.deliveredAt) {
+      order.deliveredAt = new Date();
+    }
+
+    await order.save()
+
+    res.status(200).json({ message: "Order status updated successfully", order })
+  } catch (error) {
+    console.error("Error in updateOrderStatus controller: ", error)
+  }
+}
+
+export async function getAllCustomers(req, res) {
+  try {
+    const users = await User.find().sort({ createdAt: -1 })
+
+    res.status(200).json(users);
+  } catch (error) {
+    console.error("Error fetching customers", error);
+    res.status(500).json({ message: "Internal server error" })
+  }
+}
+
+export async function getDashboardStats(req, res) {
+  try {
+    const totalOrders = await Order.countDocuments();
+
+    const revenueResult = await Order.aggregate([{
+      $group: {
+        _id: null,
+        total: { $sum: "$totalPrice" },
+      }
+    }])
+
+    const totalRevenue = revenueResult[0]?.total || 0;
+    const totalCustomers = await User.countDocuments();
+    const totalProducts = await Product.countDocuments();
+
+    res.status(200).json({
+      totalOrders,
+      revenueResult,
+      totalRevenue,
+      totalProducts
+    })
+  } catch (error) {
+    console.error("Error fetching dashboard stats", error)
+    res.status(500).json({ message: "Internal server error" })
   }
 }

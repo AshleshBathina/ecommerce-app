@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const orderItemSchema = new mongoose.Schema({
   product: {
-    type: mongoose.Scehma.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Product",
     required: true
   },
@@ -55,7 +55,7 @@ const shippingAddressSchema = new mongoose.Schema({
 
 const orderSchema = new mongoose.Schema({
   user: {
-    type: mongoose.Scehma.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true
   },
