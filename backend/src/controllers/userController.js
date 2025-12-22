@@ -4,6 +4,10 @@ export async function addAddress(req, res) {
   try {
     const { label, fullName, streetAddress, city, state, zipCode, phoneNumber, isDefault } = req.body;
 
+    if (!label || !fullName || !streetAddress || !city || !state || !zipCode || !phoneNumber) {
+      return res.status(400).json({ message: "Missing required fields" })
+    }
+
     const user = req.user;
 
     if (isDefault) {
