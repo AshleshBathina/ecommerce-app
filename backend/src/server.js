@@ -10,6 +10,7 @@ import { functions, inngest } from "./config/inngest.js";
 
 import adminRouter from "./routes/adminRouter.js"
 import userRouter from "./routes/userRouter.js"
+import orderRouter from "./routes/orderRouter.js"
 
 const app = express();
 
@@ -20,7 +21,8 @@ app.use(clerkMiddleware());
 app.use("/api/inngest", serve({ client: inngest, functions }))
 
 app.use("/api/admin", adminRouter)
-app.use("/api/user", userRouter)
+app.use("/api/users", userRouter)
+app.use("/api/orders", orderRouter)
 
 const PORT = process.env.PORT || 3000;
 
