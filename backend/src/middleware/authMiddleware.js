@@ -22,8 +22,6 @@ export const protectRoute = [
     }
 
   },
-
-
 ]
 
 export const adminOnly = (req, res, next) => {

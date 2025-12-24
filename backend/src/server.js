@@ -11,6 +11,9 @@ import { functions, inngest } from "./config/inngest.js";
 import adminRouter from "./routes/adminRouter.js"
 import userRouter from "./routes/userRouter.js"
 import orderRouter from "./routes/orderRouter.js"
+import reviewRouter from "./routes/reviewRouter.js"
+import productRouter from "./routes/productRouter.js"
+
 
 const app = express();
 
@@ -23,6 +26,8 @@ app.use("/api/inngest", serve({ client: inngest, functions }))
 app.use("/api/admin", adminRouter)
 app.use("/api/users", userRouter)
 app.use("/api/orders", orderRouter)
+app.use("/api/reviews", reviewRouter)
+app.use("/api/products", productRouter)
 
 const PORT = process.env.PORT || 3000;
 
