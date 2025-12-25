@@ -8,11 +8,14 @@ import { connectDB } from "./config/db.js";
 import { serve } from "inngest/express";
 import { functions, inngest } from "./config/inngest.js";
 
+import cors from "cors"
+
 import adminRouter from "./routes/adminRouter.js"
 import userRouter from "./routes/userRouter.js"
 import orderRouter from "./routes/orderRouter.js"
 import reviewRouter from "./routes/reviewRouter.js"
 import productRouter from "./routes/productRouter.js"
+import cartRouter from "./routes/cartRouter.js"
 
 
 const app = express();
@@ -20,6 +23,7 @@ const app = express();
 const __dirname = path.resolve();
 app.use(express.json());
 app.use(clerkMiddleware());
+app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }))
 
 app.use("/api/inngest", serve({ client: inngest, functions }))
 
@@ -28,6 +32,7 @@ app.use("/api/users", userRouter)
 app.use("/api/orders", orderRouter)
 app.use("/api/reviews", reviewRouter)
 app.use("/api/products", productRouter)
+app.use("/api/cart", cartRouter)
 
 const PORT = process.env.PORT || 3000;
 
