@@ -175,6 +175,7 @@ export async function getDashboardStats(req, res) {
     res.status(200).json({
       totalOrders,
       revenueResult,
+      totalCustomers,
       totalRevenue,
       totalProducts
     })
