@@ -41,7 +41,7 @@ export async function getAllProducts(req, res) {
   try {
     //-1 means most recent products first
     const products = await Product.find().sort({ createdAt: -1 });
-    res.status(200).send(products);
+    res.status(200).json(products);
   } catch (error) {
     console.error("Error fetching products", error);
     res.status(404).json({ message: "Internal server error" });
