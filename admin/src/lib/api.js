@@ -1,4 +1,3 @@
-import { data } from "react-router"
 import axiosInstance from "./axios"
 
 export const productApi = {
