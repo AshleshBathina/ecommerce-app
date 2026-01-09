@@ -26,7 +26,7 @@ A robust, full-stack e-commerce solution features a modern Admin Dashboard and a
 - **Product Management**: Full CRUD operations for products, including image uploads via Cloudinary.
 - **Order Management**: Track and update order statuses.
 - **Customer Management**: View and manage customer accounts.
-- **Secure Authentication**: Admin-only access protected by Clerk
+- **Secure Authentication**: Admin-only access protected by Clerk.
 
 ### Core Backend Services
 - **RESTful API**: Structured endpoints in `routes/` (Admin, Auth, Products, etc.).
