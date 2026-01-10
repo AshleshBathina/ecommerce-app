@@ -69,6 +69,11 @@ function ProductsPage() {
     const files = Array.from(e.target.files)
     if (files.length > 3) return alert("Maximum 3 images allowed")
 
+    //Revoke previous blob URLs to free memory
+    imagePreviews.forEach(url => {
+      if (url.startsWith("blob:")) URL.revokeObjectURL(url);
+    })
+
     setImages(files);
     setImagePreviews(files.map(file => URL.createObjectURL(file)))
   }
