@@ -37,6 +37,13 @@ function ProductsPage() {
     }
   })
 
+  const deleteProductMutation = useMutation({
+    mutationFn: productApi.delete,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] })
+    }
+  })
+
   const closeModal = () => {
     setShowModal(false);
     setEditingProduct(null);
@@ -148,8 +155,14 @@ function ProductsPage() {
                     >
                       <PencilIcon className="size-5" />
                     </button>
-                    <button className="btn btn-square btn-ghost text-error">
-                      <Trash2Icon className="size-5" />
+                    <button className="btn btn-square btn-ghost text-error"
+                      onClick={() => deleteProductMutation.mutate(product._id)}
+                    >
+                      {deleteProductMutation.isPending ? (
+                        <span className="loading loading-spinner"></span>
+                      ) : (
+                        <Trash2Icon className="size-5" />
+                      )}
                     </button>
                   </div>
 
