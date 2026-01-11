@@ -62,7 +62,7 @@ export async function updateProduct(req, res) {
     if (name) product.name = name;
     if (description) product.description = description;
     if (price !== undefined) product.price = price;
-    if (stock) product.stock = stock;
+    if (stock !== undefined) product.stock = stock;
     if (category) product.category = category;
 
     if (req.files && req.files.length > 0) {
@@ -89,33 +89,32 @@ export async function updateProduct(req, res) {
   }
 }
 
-export async function deleteProduct(req, res) {
+export const deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
 
     const product = await Product.findById(id);
-
     if (!product) {
-      return res.status(404).json({ message: "Product not found" })
+      return res.status(404).json({ message: "Product not found" });
     }
 
-    //Delete images from cloudinary
+    // Delete images from Cloudinary
     if (product.images && product.images.length > 0) {
       const deletePromises = product.images.map((imageUrl) => {
-        const publicId = "/products" + imageUrl.split("/products")[1]?.split(".")[0];
+        // Extract public_id from URL (assumes format: .../products/publicId.ext)
+        const publicId = "products/" + imageUrl.split("/products/")[1]?.split(".")[0];
         if (publicId) return cloudinary.uploader.destroy(publicId);
       });
       await Promise.all(deletePromises.filter(Boolean));
     }
 
     await Product.findByIdAndDelete(id);
-
     res.status(200).json({ message: "Product deleted successfully" });
   } catch (error) {
-    console.error("Error deleting products", error);
-    res.status(500).json({ message: "Internal server error" });
+    console.error("Error deleting product:", error);
+    res.status(500).json({ message: "Failed to delete product" });
   }
-}
+};
 
 export async function getAllOrders(req, res) {
   try {
@@ -131,7 +130,7 @@ export async function getAllOrders(req, res) {
 export async function updateOrderStatus(req, res) {
   try {
     const { orderId } = req.params;
-    const { status } = req.status;
+    const { status } = req.body;
 
     if (!["pending", "shipped", "delivered"].includes(status
     )) {
