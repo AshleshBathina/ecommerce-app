@@ -1,3 +1,4 @@
+import axios from "axios";
 import axiosInstance from "./axios"
 
 export const productApi = {
@@ -39,5 +40,12 @@ export const StatsApi = {
   getDashboard: async () => {
     const { data } = await axiosInstance.get('/admin/stats');
     return data;
+  }
+}
+
+export const customerApi = {
+  getAll: async () => {
+    const { data } = await axiosInstance.get("/admin/customers")
+    return data
   }
 }
