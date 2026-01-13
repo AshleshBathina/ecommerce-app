@@ -9,8 +9,10 @@ function CustomersPage() {
     queryFn: customerApi.getAll
   })
 
-  const customers = data?.customers || [];
 
+
+  const customers = data?.customers || [];
+  console.log(customers)
   return (
     <div className="space-y-6">
       <div>
@@ -34,7 +36,7 @@ function CustomersPage() {
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table class Name="table">
+              <table className="table">
                 <thead>
                   <tr>
                     <th>Customer</th>
@@ -46,7 +48,7 @@ function CustomersPage() {
                 </thead>
 
                 <tbody>
-                  {customers.map(customer => {
+                  {customers.map(customer => (
                     <tr key={customer._id}>
                       <td className="flex items-center gap-3">
                         <div className="avatar placeholder">
@@ -60,8 +62,24 @@ function CustomersPage() {
                         </div>
                         <div className="font-semibold">{customer.name}</div>
                       </td>
+
+                      <td>{customer.email}</td>
+                      <td>
+                        <div className="badge badge-ghost">
+                          {customer.addresses?.length || 0} address(es)
+                        </div>
+                      </td>
+                      <td>
+                        <div className="badge badge-ghost">
+                          {customer.wishlist?.length || 0} item(s)
+                        </div>
+                      </td>
+
+                      <td>
+                        <span className="text-sm opacity-60">{formatDate(customer.createdAt)}</span>
+                      </td>
                     </tr>
-                  })}
+                  ))}
                 </tbody>
               </table>
             </div>
