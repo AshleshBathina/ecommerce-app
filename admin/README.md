@@ -1,16 +1,49 @@
-# React + Vite
+# Admin Dashboard - Ecommerce App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the admin panel for the Ecommerce Application, built with React and Vite. It provides a comprehensive interface for managing products, orders, and customers, as well as viewing key business metrics.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 📊 Dashboard
+- **Overview Statistics**: View real-time data on:
+  - Total Orders
+  - Total Revenue
+  - Total Customers
+  - Total Products
 
-## React Compiler
+### 📦 Product Management
+- **Create Product**: Add new products with up to 3 images, description, price, stock, and category.
+- **Edit Product**: Update existing product details including images and inventory.
+- **Delete Product**: Remove products from the catalog and associated images from Cloudinary.
+- **View Products**: List all products sorted by most recent.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🛍️ Order Management
+- **View Orders**: Access a complete list of customer orders with user details and ordered items.
+- **Update Status**: Change order status to `pending`, `shipped`, or `delivered`.
 
-## Expanding the ESLint configuration
+### 👥 Customer Management
+- **View Customers**: Browse a list of all registered users.
+- **Customer Insights**: View customer profile images, names, emails, address counts, and wishlist item counts.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+- **Frontend**: React, Vite
+- **Styling**: Tailwind CSS, DaisyUI
+- **State Management**: TanStack Query (React Query)
+- **HTTP Client**: Axios (implied by API structure)
+
+## Getting Started
+
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+3. **Build for production**
+   ```bash
+   npm run build
+   ```
