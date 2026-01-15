@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/AshleshBathina/ecommerce-app/issues"
   },
-  "homepage": "https://github.com/AshleshBathina/ecommerce-app#readme"
+  "homepage": "https://github.com/AshleshBathina/ecommerce-app#readme",
+  "dependencies": {
+    "daisyui": "^5.5.14"
+  }
 }
