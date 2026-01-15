@@ -1,4 +1,7 @@
 import { Routes, Route, Navigate } from "react-router"
+import { useEffect } from "react"
+
+import axiosInstance from "./lib/axios"
 
 import DashboardLayout from "./layouts/DashboardLayout"
 import LoginPage from "./pages/LoginPage"
@@ -13,7 +16,21 @@ import { useAuth } from "@clerk/clerk-react"
 
 function App() {
 
-  const { isSignedIn, isLoaded } = useAuth()
+  const { isSignedIn, isLoaded, getToken } = useAuth()
+
+  useEffect(() => {
+    const interceptorId = axiosInstance.interceptors.request.use(async (config) => {
+      const token = await getToken();
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    }, (error) => {
+      return Promise.reject(error);
+    });
+
+    return () => axiosInstance.interceptors.request.eject(interceptorId);
+  }, [getToken]);
 
   if (!isLoaded) {
     return <PageLoader />
