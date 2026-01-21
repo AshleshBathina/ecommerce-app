@@ -14,7 +14,7 @@ const Sidebar = () => {
         <button className="flex cursor-pointer justify-center items-center rounded-3xl hover:bg-gray-100 h-10 w-10">
           <ShoppingBag className="size-5 text-gray-900 md:size-6" />
         </button>
-        <button className="flex items-center bg-black text-md text-white px-3.5 py-1.5 font-medium hover:bg-gray-800 tracking-wide cursor-pointer rounded-md font-[Inter]"><Plus className="size-4 mr-1" /><p className="text-sm"> Create scenario</p></button>
+        <button className="shadow-md flex items-center bg-gray-900 text-md text-white px-3.5 py-1.5 font-medium hover:bg-gray-700 tracking-wide cursor-pointer rounded-md font-[Inter]"><Plus className="size-4 mr-1" /><p className="text-sm">Create product</p></button>
       </div>
     </div>
   )
