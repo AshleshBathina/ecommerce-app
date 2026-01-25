@@ -49,16 +49,9 @@ const LoginPage = () => {
 
             <span className="ml-2 font-inter text-xs font-medium">Continue with Apple</span>
           </button>
-          <p className="text-center px-6 mt-4 text-gray-400 font-inter font-medium text-[9px]">By signing up, you agree to our <a className="text-blue-500" href="https://www.google.com/policies/terms/
-" target="_blank">Terms</a>, <a className="text-blue-500" href="https://www.google.com/policies/privacy/
-" target="_blank">Privacy Policy</a>, and <a className="text-blue-500" href="https://www.allaboutcookies.org/
-" target="_blank">Cookie Use.</a></p>
+          <p className="text-center px-6 mt-4 text-gray-400 font-inter font-medium text-[9px]">By signing up, you agree to our <a className="text-blue-500" href="https://www.google.com/policies/terms/" target="_blank">Terms</a>, <a className="text-blue-500" href="https://www.google.com/policies/privacy/" target="_blank">Privacy Policy</a>, and <a className="text-blue-500" href="https://www.allaboutcookies.org/" target="_blank">Cookie Use.</a></p>
         </div>
-
       </div>
-
-
-
     </div>
   )
 }
