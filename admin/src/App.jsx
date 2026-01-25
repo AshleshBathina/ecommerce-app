@@ -27,8 +27,8 @@ function App() {
 
         <Route path="dashboard" element={<DashboardPage />} />
         <Route path="products" element={<ProductsPage />} />
-        <Route path="/orders" element={<OrdersPage />} />
-        <Route path="/customers" element={<CustomersPage />} />
+        <Route path="orders" element={<OrdersPage />} />
+        <Route path="customers" element={<CustomersPage />} />
 
 
       </Route>

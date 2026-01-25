@@ -8,13 +8,14 @@ import { SignedIn, SignInButton, SignedOut, UserButton } from '@clerk/clerk-reac
 import Sidebar from "./components/Sidebar"
 import LoginPage from "./pages/LoginPage"
 import SsoPage from './pages/SsoPage'
+import HomePage from './pages/HomePage'
 
 function App() {
 
 
   return (
     <Routes>
-      <Route path="/" element={<LoginPage />} />
+      <Route path="/" element={<HomePage />} />
       <Route path="/sso" element={<SsoPage />} />
       <Route path="/sb" element={<Sidebar />} />
     </Routes>
