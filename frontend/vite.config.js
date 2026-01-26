@@ -6,10 +6,6 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
-    host: true,
-    allowedHosts: ['myrna-patriotic-jillian.ngrok-free.dev',],
-    hmr: {
-      clientPort: 443
-    }
+    host: true
   }
 })

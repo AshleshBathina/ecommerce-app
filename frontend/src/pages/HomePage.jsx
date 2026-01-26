@@ -76,7 +76,7 @@ const HomePage = () => {
       {(isPending || isFetching) ? <PageLoader /> : (
         <ul className="px-7 flex flex-wrap gap-2">
           {productsData.map((product) => (
-            <li className="w-[48%]">
+            <li key={product._id} className="w-[48%]">
               <div className="w-full">
                 <img className="w-full" src={product.images[0]} />
               </div>

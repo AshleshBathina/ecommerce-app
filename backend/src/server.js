@@ -23,7 +23,7 @@ const app = express();
 const __dirname = path.resolve();
 app.use(express.json());
 app.use(clerkMiddleware());
-app.use(cors({ origin: ENV.NODE_ENV === 'development' ? ['http://localhost:5173', 'http://localhost:5174'] : ENV.CLIENT_URL, credentials: true }))
+app.use(cors({ origin: ENV.NODE_ENV === 'development' ? ['http://localhost:5173', 'http://localhost:5174', 'http://192.168.55.105:5173', 'http://192.168.55.105:5174'] : ENV.CLIENT_URL, credentials: true }))
 
 app.use("/api/inngest", serve({ client: inngest, functions }))
 
