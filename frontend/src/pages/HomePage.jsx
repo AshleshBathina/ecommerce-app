@@ -1,6 +1,6 @@
 import { productsApi } from "../lib/api"
 import { useQuery } from "@tanstack/react-query"
-import { Settings2, Search, LayoutGrid, Handbag, Trophy, LibraryBig, MonitorSmartphone, Star } from "lucide-react"
+import { Settings2, Search, LayoutGrid, Handbag, Trophy, LibraryBig, MonitorSmartphone, Star, Heart } from "lucide-react"
 
 import PageLoader from "../components/PageLoader"
 
@@ -8,27 +8,27 @@ const categories = [
   {
     id: 'ALL',
     title: 'All',
-    icon: <LayoutGrid className="size-9" />
+    icon: <LayoutGrid className="size-8" />
   },
   {
     id: 'ELECTRONICS',
     title: 'Electronics',
-    icon: <MonitorSmartphone className="size-9" />
+    icon: <MonitorSmartphone className="size-8" />
   },
   {
     id: 'FASHION',
     title: 'Fashion',
-    icon: <Handbag className="size-9" />
+    icon: <Handbag className="size-8" />
   },
   {
     id: 'SPORTS',
     title: 'Sports',
-    icon: <Trophy className="size-9" />
+    icon: <Trophy className="size-8" />
   },
   {
     id: 'BOOKS',
     title: 'Books',
-    icon: <LibraryBig className="size-9" />
+    icon: <LibraryBig className="size-8" />
   }
 
 ]
@@ -44,8 +44,8 @@ const HomePage = () => {
     <div className="flex flex-col min-h-screen h-full bg-[#0F0F0F] pt-7">
       <div className="flex justify-between px-7">
         <div className="">
-          <h1 className="font-bold text-white text-2xl">BathinaGoods</h1>
-          <p className="text-[#9CA3AF] text-xs">Shop whatever you want!</p>
+          <h1 className="font-bold text-white text-2xl">Shop</h1>
+          <p className="text-[#9CA3AF] text-xs">Shop whatever you want.</p>
         </div>
         <button className="bg-[#1A1A1A] p-4 rounded-4xl">
           <Settings2 className="size-5 text-white" />
@@ -58,7 +58,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      <ul className="flex items-center px-7 mt-5 overflow-x-auto no-scrollbar gap-4 scroll-smooth">
+      <ul className="flex items-center px-7 mt-3 overflow-x-auto no-scrollbar gap-3 scroll-smooth">
         {categories.map((category) => (
           <li key={category.id} className="p-4 first-child bg-[#222222] text-gray-300 first:bg-green-500 first:text-slate-900 rounded-2xl">
             <button className="flex justify-center items-center">
@@ -68,23 +68,33 @@ const HomePage = () => {
         ))}
       </ul>
 
-      <div className="mt-5 flex justify-between px-7">
+      <div className="mt-5 flex justify-between items-center px-7">
         <h1 className="text-white text-lg font-semibold">Products</h1>
-        <p className="text-[#9CA3AF] text-xs">{productsData?.length || 0} products</p>
+        <p className="text-[#9ca3afb8] text-xs">{productsData?.length || 0} products</p>
       </div>
 
       {(isPending || isFetching) ? <PageLoader /> : (
-        <ul className="px-7 flex flex-wrap gap-2">
+        <ul className="px-7 mt-2 flex flex-wrap gap-4">
           {productsData.map((product) => (
-            <li key={product._id} className="w-[48%]">
-              <div className="w-full">
-                <img className="w-full" src={product.images[0]} />
+            <li key={product._id} className="w-40 h-63 rounded-2xl">
+              <div className="h-33 rounded-t-2xl relative overflow-hidden flex justify-center items-center">
+                <img className="w-full h-full" src={product.images[0]} />
+                <span className="absolute top-3 right-3 bg-black/50 backdrop-blur-sm size-9 rounded-3xl flex justify-center items-center">
+                  <Heart className="size-5 text-white" />
+                </span>
               </div>
-              <div className="bg-[#1F1F1F]">
-                <p className="text-sm">{product.category}</p>
-                <h1 className="text-lg">{product.name}</h1>
-                <p className="text-sm"><Star className="fill-amber-300 size-3" /> {product.averageRating} {`(${product.totalReviews})`}</p>
+              <div className="bg-[#1F1F1F] h-30 rounded-b-2xl p-3">
+                <p className="text-[10px] text-neutral-400 mb-1" >{product.category}</p>
+                <h1 className="text-xs mb-1 font-medium text-white">{product.name}</h1>
+                <p className="flex text-sm gap-1 items-center text-white text-[10px]"><Star className="fill-amber-300 size-3 text-amber-400" />{product.averageRating}<span className="text-neutral-400">{`(${product.totalReviews})`}</span></p>
+
+                <div className="mt-auto">
+                  <p className="text-green-400 font-medium text-md">₹{product.price}</p>
+
+                </div>
               </div>
+
+
             </li>
           ))}
         </ul>
