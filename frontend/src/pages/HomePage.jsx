@@ -1,8 +1,9 @@
-import { productsApi } from "../lib/api"
-import { useQuery } from "@tanstack/react-query"
+import useProducts from "../hooks/useProducts"
 import { Settings2, Search, LayoutGrid, Handbag, Trophy, LibraryBig, MonitorSmartphone, Star, Heart } from "lucide-react"
 
 import PageLoader from "../components/PageLoader"
+
+const { data: products, isLoading, isError } = useProducts();
 
 const categories = [
   {
@@ -35,10 +36,7 @@ const categories = [
 
 const HomePage = () => {
 
-  const { data: productsData, isPending, isFetching } = useQuery({
-    queryKey: ['products'],
-    queryFn: productsApi.getAllProducts
-  })
+
 
   return (
     <div className="flex flex-col min-h-screen h-full bg-[#0F0F0F] pt-7">
@@ -88,8 +86,8 @@ const HomePage = () => {
                 <h1 className="text-xs mb-1 font-medium text-white">{product.name}</h1>
                 <p className="flex text-sm gap-1 items-center text-white text-[10px]"><Star className="fill-amber-300 size-3 text-amber-400" />{product.averageRating}<span className="text-neutral-400">{`(${product.totalReviews})`}</span></p>
 
-                <div className="mt-auto">
-                  <p className="text-green-400 font-medium text-md">₹{product.price}</p>
+                <div className="mt-3">
+                  <p className="text-green-400 font-bold text-md">₹{product.price}</p>
 
                 </div>
               </div>
