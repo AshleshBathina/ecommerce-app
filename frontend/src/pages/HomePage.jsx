@@ -1,4 +1,5 @@
 import useProducts from "../hooks/useProducts"
+import useWishlist from "../hooks/useWishlist"
 import { Settings2, Search, LayoutGrid, Handbag, Trophy, LibraryBig, MonitorSmartphone, Star, Heart } from "lucide-react"
 
 import PageLoader from "../components/PageLoader"
@@ -36,6 +37,7 @@ const categories = [
 ]
 
 const HomePage = () => {
+  const { isAddingToWishlist, isRemovingFromWishlist, isInWishlist, toggleWishlist } = useWishlist()
 
   const [selectedCategory, handleSelectedCategory] = useState(categories[0].title)
   const [searchQuery, handleSearchQuery] = useState('')
@@ -89,8 +91,8 @@ const HomePage = () => {
 
       <ul className="flex items-center px-7 mt-3 overflow-x-auto no-scrollbar gap-3 scroll-smooth">
         {categories.map((category) => (
-          <li key={category.id} className={`p-4 first-child bg-[#222222] text-gray-300 ${selectedCategory === category.title ? 'bg-green-500 text-slate-900' : ''} rounded-2xl`}>
-            <button className="flex justify-center items-center" onClick={() => updateCategory(category.title)}>
+          <li key={category.id} className={`first-child bg-[#222222] text-gray-300 flex justify-center items-center ${selectedCategory === category.title ? 'bg-green-500 text-slate-900' : 'hover:bg-[#313131]'} rounded-2xl`}>
+            <button className=" p-4 flex justify-center items-center cursor-pointer h-full" onClick={() => updateCategory(category.title)}>
               {category.icon}
             </button>
           </li>
@@ -109,9 +111,9 @@ const HomePage = () => {
               <li key={product._id} className="w-40 h-63 rounded-2xl">
                 <div className="h-33 rounded-t-2xl relative overflow-hidden flex justify-center items-center">
                   <img className="w-full h-full" src={product.images[0]} />
-                  <span className="absolute top-3 right-3 bg-black/50 backdrop-blur-sm size-9 rounded-3xl flex justify-center items-center">
-                    <Heart className="size-5 text-white" />
-                  </span>
+                  <button className="absolute top-3 right-3 bg-black/50 backdrop-blur-sm size-9 rounded-3xl flex justify-center items-center" disabled={isAddingToWishlist.isPending || isRemovingFromWishlist.isPending} onClick={() => toggleWishlist(product._id)}>
+                    <Heart className={`size-5  ${isInWishlist(product._id) ? 'fill-red-400 text-red-400' : 'text-white'}`} />
+                  </button>
                 </div>
                 <div className="bg-[#1F1F1F] h-30 rounded-b-2xl p-3">
                   <p className="text-[10px] text-neutral-400 mb-1" >{product.category}</p>

@@ -112,7 +112,7 @@ export async function addToWishlist(req, res) {
     user.wishlist.push(productId)
     await user.save()
 
-    res.status(200).json({ message: "Product added to wishlist successfully" })
+    res.status(200).json({ message: "Product added to wishlist successfully", wishlist: user.wishlist })
 
   } catch (error) {
     console.error("Error in addToWishlist controller: ", error)
