@@ -1,6 +1,6 @@
 import useProducts from "../hooks/useProducts"
 import useWishlist from "../hooks/useWishlist"
-import { Settings2, Search, LayoutGrid, Handbag, Trophy, LibraryBig, MonitorSmartphone, Star, Heart } from "lucide-react"
+import { Settings2, Search, LayoutGrid, Handbag, Trophy, LibraryBig, MonitorSmartphone, Star, Heart, Plus } from "lucide-react"
 
 import PageLoader from "../components/PageLoader"
 import { useMemo, useState } from "react"
@@ -120,9 +120,11 @@ const HomePage = () => {
                   <h1 className="text-xs mb-1 font-medium text-white">{product.name}</h1>
                   <p className="flex text-sm gap-1 items-center text-white text-[10px]"><Star className="fill-amber-300 size-3 text-amber-400" />{product.averageRating}<span className="text-neutral-400">{`(${product.totalReviews})`}</span></p>
 
-                  <div className="mt-3">
+                  <div className="mt-3 flex w-full items-center justify-between">
                     <p className="text-green-400 font-bold text-md">₹{product.price}</p>
-
+                    <button className="rounded-2xl p-1 bg-green-400">
+                      <Plus className="text-black size-5" />
+                    </button>
                   </div>
                 </div>
 
