@@ -76,7 +76,7 @@ const HomePage = () => {
       <div className="flex justify-between px-7">
         <div className="">
           <h1 className="font-bold text-white text-2xl">Products Page</h1>
-          <p className="text-[#9CA3AF] text-xs">Shop whatever you want.</p>
+          <p className="text-[#9CA3AF] text-xs">Vast categories of products</p>
         </div>
         <button className="bg-[#1A1A1A] p-4 rounded-4xl">
           <Settings2 className="size-5 text-white" />
