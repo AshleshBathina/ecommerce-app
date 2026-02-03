@@ -86,6 +86,7 @@ const HomePage = () => {
         <div className="flex items-center bg-[#222222] gap-3 rounded-2xl px-4">
           <Search className="text-[#8A8A8A] text-sm" />
           <input className="py-4 w-full outline-none text-white placeholder:text-[#8A8A8A]" placeholder="Search for products..." type="search" value={searchQuery} onChange={updateSearchQuery} />
+          <input />
         </div>
       </div>
 
