@@ -3,7 +3,7 @@ import { Product } from "../models/product.js";
 
 export async function getCart(req, res) {
   try {
-    const cart = await Cart.findOne({ clerkId: req.user.clerkId })
+    let cart = await Cart.findOne({ clerkId: req.user.clerkId })
 
     if (!cart) {
       const user = req.user;
@@ -48,7 +48,7 @@ export async function addToCart(req, res) {
       })
     }
 
-    const existingItem = cart.items.find((item) => item.productId.toString() === productId)
+    const existingItem = cart.items.find((item) => item.product._id.toString() === productId)
 
     if (existingItem) {
       const newQuantity = existingItem.quantity++;
@@ -63,6 +63,7 @@ export async function addToCart(req, res) {
     }
 
     await cart.save()
+    res.status(200).json({ cart })
 
   } catch (error) {
     console.error("Error in addToCart controller: ", error)
