@@ -1,9 +1,10 @@
 import useProducts from "../hooks/useProducts"
 import useWishlist from "../hooks/useWishlist"
-import { Settings2, Search, LayoutGrid, Handbag, Trophy, LibraryBig, MonitorSmartphone, Star, Heart, Plus } from "lucide-react"
+import { Settings2, Search, LayoutGrid, Handbag, Trophy, LibraryBig, MonitorSmartphone, Star, Heart, Plus, Check } from "lucide-react"
 
 import PageLoader from "../components/PageLoader"
 import { useMemo, useState } from "react"
+import useCart from "../hooks/useCart"
 
 
 
@@ -38,6 +39,8 @@ const categories = [
 
 const HomePage = () => {
   const { isAddingToWishlist, isRemovingFromWishlist, isInWishlist, toggleWishlist } = useWishlist()
+
+  const { isAddingToCart, isRemovingFromCart, isInCart, toggleCart } = useCart()
 
   const [selectedCategory, handleSelectedCategory] = useState(categories[0].title)
   const [searchQuery, handleSearchQuery] = useState('')
@@ -86,7 +89,6 @@ const HomePage = () => {
         <div className="flex items-center bg-[#222222] gap-3 rounded-2xl px-4">
           <Search className="text-[#8A8A8A] text-sm" />
           <input className="py-4 w-full outline-none text-white placeholder:text-[#8A8A8A]" placeholder="Search for products..." type="search" value={searchQuery} onChange={updateSearchQuery} />
-          <input />
         </div>
       </div>
 
@@ -109,22 +111,22 @@ const HomePage = () => {
         (isPending || isFetching) ? <PageLoader /> : (
           <ul className="px-7 mt-2 flex flex-wrap gap-4">
             {filteredProducts.map((product) => (
-              <li key={product._id} className="w-40 h-63 rounded-2xl">
+              <li key={product._id} className="w-40 h-64 rounded-2xl">
                 <div className="h-33 rounded-t-2xl relative overflow-hidden flex justify-center items-center">
                   <img className="w-full h-full" src={product.images[0]} />
                   <button className="absolute top-3 right-3 bg-black/50 backdrop-blur-sm size-9 rounded-3xl flex justify-center items-center" disabled={isAddingToWishlist.isPending || isRemovingFromWishlist.isPending} onClick={() => toggleWishlist(product._id)}>
                     <Heart className={`size-5  ${isInWishlist(product._id) ? 'fill-red-400 text-red-400' : 'text-white'}`} />
                   </button>
                 </div>
-                <div className="bg-[#1F1F1F] h-30 rounded-b-2xl p-3">
+                <div className="bg-[#1F1F1F] h-32 rounded-b-2xl p-3">
                   <p className="text-[10px] text-neutral-400 mb-1" >{product.category}</p>
-                  <h1 className="text-xs mb-1 font-medium text-white">{product.name}</h1>
+                  <h1 className="line-clamp-1 text-xs mb-1 font-medium text-white">{product.name}</h1>
                   <p className="flex text-sm gap-1 items-center text-white text-[10px]"><Star className="fill-amber-300 size-3 text-amber-400" />{product.averageRating}<span className="text-neutral-400">{`(${product.totalReviews})`}</span></p>
 
                   <div className="mt-3 flex w-full items-center justify-between">
                     <p className="text-green-400 font-bold text-md">₹{product.price}</p>
-                    <button className="rounded-2xl p-1 bg-green-400">
-                      <Plus className="text-black size-5" />
+                    <button className="rounded-2xl p-1 bg-green-400" onClick={() => toggleCart(product._id)}>
+                      {isInCart(product._id) ? <Check className="text-black size-5" /> : <Plus className="text-black size-5" />}
                     </button>
                   </div>
                 </div>

@@ -9,7 +9,6 @@ export const productsApi = {
 
 }
 
-
 export const wishlistApi = {
   getWishlist: async () => {
     const { data } = await axiosInstance.get('/users/wishlist')
@@ -24,5 +23,32 @@ export const wishlistApi = {
   addToWishlist: async (productId) => {
     const { data } = await axiosInstance.post('/users/wishlist', { productId })
     return data.wishlist
+  }
+}
+
+export const cartApi = {
+  getCart: async () => {
+    const { data } = await axiosInstance.get('/cart/')
+    return data.cart
+  },
+
+  addToCart: async () => {
+    const { data } = await axiosInstance.post('/cart/')
+    return data.cart
+  },
+
+  updateCartItem: async (productId) => {
+    const { data } = await axiosInstance.put(`/cart/${productId}`)
+    return data.cart
+  },
+
+  removeFromCart: async (productId) => {
+    const { data } = await axiosInstance.delete(`/cart/${productId}`)
+    return data.cart;
+  },
+
+  clearCart: async () => {
+    const { data } = await axiosInstance.delete('/cart/delete')
+    return data
   }
 }
