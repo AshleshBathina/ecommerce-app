@@ -77,7 +77,7 @@ const HomePage = () => {
   return (
     <div className="flex flex-col min-h-screen h-full bg-[#0F0F0F] pt-7">
       <div className="flex justify-between px-7">
-        <div className="">
+        <div className="flex flex-col">
           <h1 className="font-bold text-white text-2xl">Products Page</h1>
           <p className="text-[#9CA3AF] text-xs">Vast categories of products</p>
         </div>
