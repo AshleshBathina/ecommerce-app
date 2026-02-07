@@ -14,6 +14,7 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/sso" element={<SsoPage />} />
+      <Route path="/login" element={<LoginPage />} />
     </Routes>
   )
 }
