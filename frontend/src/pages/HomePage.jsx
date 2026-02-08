@@ -57,6 +57,7 @@ const HomePage = () => {
 
   const { data: productsData, isLoading, isError, isPending, isFetching } = useProducts();
 
+
   const filteredProducts = useMemo(() => {
     if (!productsData) return []
 
@@ -118,6 +119,7 @@ const HomePage = () => {
                     <Heart className={`size-5  ${isInWishlist(product._id) ? 'fill-red-400 text-red-400' : 'text-white'}`} />
                   </button>
                 </div>
+
                 <div className="bg-[#1F1F1F] h-32 rounded-b-2xl p-3">
                   <p className="text-[10px] text-neutral-400 mb-1" >{product.category}</p>
                   <h1 className="line-clamp-1 text-xs mb-1 font-medium text-white">{product.name}</h1>
