@@ -1,13 +1,12 @@
 import './App.css'
 
 import { Routes, Route, Navigate } from 'react-router'
+import { useAuth } from '@clerk/clerk-react'
 
 import LoginPage from "./pages/LoginPage"
-import SsoPage from './pages/SsoPage'
 import HomePage from './pages/HomePage'
 import CartPage from './pages/CartPage'
 
-import { useAuth } from '@clerk/clerk-react'
 import PageLoader from './components/PageLoader'
 import DashboardLayout from './layouts/DashboardLayout'
 
