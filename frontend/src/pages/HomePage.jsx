@@ -112,7 +112,7 @@ const HomePage = () => {
         (isPending || isFetching) ? <PageLoader /> : (
           <ul className="px-7 mt-2 flex flex-wrap gap-4">
             {filteredProducts.map((product) => (
-              <li key={product._id} className="w-40 h-64 rounded-2xl">
+              <li key={product._id} className="w-40 h-65 rounded-2xl">
                 <div className="h-33 rounded-t-2xl relative overflow-hidden flex justify-center items-center">
                   <img className="w-full h-full" src={product.images[0]} />
                   <button className="absolute top-3 right-3 bg-black/50 backdrop-blur-sm size-9 rounded-3xl flex justify-center items-center" disabled={isAddingToWishlist.isPending || isRemovingFromWishlist.isPending} onClick={() => toggleWishlist(product._id)}>
