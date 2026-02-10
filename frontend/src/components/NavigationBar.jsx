@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { LayoutGrid, ShoppingCart, User } from "lucide-react";
 import { useNavigate, useLocation } from "react-router";
 
@@ -7,9 +6,9 @@ const NavigationBar = () => {
   const navigate = useNavigate()
 
   const navigateEnum = [
-    { id: 'HOME', name: 'Home', path: '/home', icon: <LayoutGrid className={`${location === '/home' ? 'fill-green-400' : 'fill-white'}`} /> },
-    { id: 'CART', name: 'Cart', path: '/cart', icon: <ShoppingCart className={`${location === '/cart' ? 'fill-green-400' : 'fill-white'}`} /> },
-    { id: 'PROFILE', name: 'Profile', path: 'profile', icon: <User className={`${location === '/profile' ? 'fill-green-400' : 'fill-white'}`} /> },
+    { id: 'HOME', name: 'Home', path: '/home', icon: <LayoutGrid className={`size-7 ${location === '/home' ? 'fill-green-400' : 'fill-white'}`} /> },
+    { id: 'CART', name: 'Cart', path: '/cart', icon: <ShoppingCart className={`size-7 ${location === '/cart' ? 'fill-green-400' : 'fill-white'}`} /> },
+    { id: 'PROFILE', name: 'Profile', path: 'profile', icon: <User className={`size-7 ${location === '/profile' ? 'fill-green-400' : 'fill-white'}`} /> },
   ]
 
   return (
