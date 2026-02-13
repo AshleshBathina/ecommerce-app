@@ -75,6 +75,8 @@ const HomePage = () => {
 
   }, [productsData, selectedCategory, searchQuery])
 
+  if (isError) return null
+
   return (
     <div className="flex flex-col min-h-screen h-full bg-[#0F0F0F] pt-7">
       <div className="flex justify-between px-7">
