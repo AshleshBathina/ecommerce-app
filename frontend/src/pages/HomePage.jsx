@@ -12,27 +12,27 @@ const categories = [
   {
     id: 'ALL',
     title: 'All',
-    icon: <LayoutGrid className="size-8" />
+    icon: <LayoutGrid className="size-7" />
   },
   {
     id: 'ELECTRONICS',
     title: 'Electronics',
-    icon: <MonitorSmartphone className="size-8" />
+    icon: <MonitorSmartphone className="size-7" />
   },
   {
     id: 'FASHION',
     title: 'Fashion',
-    icon: <Handbag className="size-8" />
+    icon: <Handbag className="size-7" />
   },
   {
     id: 'SPORTS',
     title: 'Sports',
-    icon: <Trophy className="size-8" />
+    icon: <Trophy className="size-7" />
   },
   {
     id: 'BOOKS',
     title: 'Books',
-    icon: <LibraryBig className="size-8" />
+    icon: <LibraryBig className="size-7" />
   }
 
 ]
@@ -40,7 +40,7 @@ const categories = [
 const HomePage = () => {
   const { isAddingToWishlist, isRemovingFromWishlist, isInWishlist, toggleWishlist } = useWishlist()
 
-  const { isAddingToCart, isRemovingFromCart, isInCart, toggleCart } = useCart()
+  const { isInCart, toggleCart } = useCart()
 
   const [selectedCategory, handleSelectedCategory] = useState(categories[0].title)
   const [searchQuery, handleSearchQuery] = useState('')
@@ -98,7 +98,7 @@ const HomePage = () => {
       <ul className="flex items-center px-7 mt-3 overflow-x-auto no-scrollbar gap-3 scroll-smooth">
         {categories.map((category) => (
           <li key={category.id} className={`first-child bg-[#222222] text-gray-300 flex justify-center items-center ${selectedCategory === category.title ? 'bg-green-500 text-slate-900' : 'hover:bg-[#313131]'} rounded-2xl`}>
-            <button className=" p-4 flex justify-center items-center cursor-pointer h-full" onClick={() => updateCategory(category.title)}>
+            <button className="w-14.5 p-4 flex justify-center items-center cursor-pointer h-full" onClick={() => updateCategory(category.title)}>
               {category.icon}
             </button>
           </li>

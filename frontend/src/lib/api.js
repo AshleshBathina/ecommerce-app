@@ -5,8 +5,6 @@ export const productsApi = {
     const { data } = await axiosInstance.get('/products');
     return data;
   },
-
-
 }
 
 export const wishlistApi = {
@@ -21,9 +19,7 @@ export const wishlistApi = {
   },
 
   addToWishlist: async (productId) => {
-    console.log("request sent")
     const { data } = await axiosInstance.post('/users/wishlist', { productId })
-    console.log("request success")
     return data.wishlist
   }
 }
@@ -39,8 +35,8 @@ export const cartApi = {
     return data.cart
   },
 
-  updateCartItem: async (productId) => {
-    const { data } = await axiosInstance.put(`/cart/${productId}`)
+  updateCartItem: async ({ productId, quantity }) => {
+    const { data } = await axiosInstance.put(`/cart/${productId}`, { quantity })
     return data.cart
   },
 

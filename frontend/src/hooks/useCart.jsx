@@ -4,7 +4,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 const useCart = () => {
   const queryClient = useQueryClient()
 
-  const { data: cart, isLoading, isError } = useQuery({
+  const { data: cart, isLoading, isError, isSuccess } = useQuery({
     queryKey: ['cart'],
     queryFn: cartApi.getCart
   })
@@ -12,7 +12,6 @@ const useCart = () => {
   const addToCartMutation = useMutation({
     mutationFn: cartApi.addToCart,
     onSuccess: (data) => {
-      console.log('✅ addToCart SUCCESS:', data)
       queryClient.invalidateQueries({ queryKey: ['cart'] })
     },
     onError: (error) => {
@@ -21,14 +20,15 @@ const useCart = () => {
   })
 
   const updateCartItemMutation = useMutation({
-    queryFn: cartApi.updateCartItem,
+    mutationFn: ({ productId, quantity }) => {
+      return cartApi.updateCartItem({ productId, quantity })
+    },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['cart'] })
   })
 
   const removeFromCartMutation = useMutation({
     mutationFn: cartApi.removeFromCart,
     onSuccess: (data) => {
-      console.log('✅ removeFromCart SUCCESS:', data)
       queryClient.invalidateQueries({ queryKey: ['cart'] })
     },
     onError: (error) => {
@@ -37,29 +37,29 @@ const useCart = () => {
   })
 
   const clearCartMutation = useMutation({
-    queryFn: cartApi.clearCart,
+    mutationFn: cartApi.clearCart,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['cart'] })
   })
 
   const isInCart = (productId) => {
     const result = cart?.items?.some(item => item.product._id?.toString() === productId?.toString()) ?? false;
-    console.log('🔍 isInCart check:', { productId, cartItems: cart?.items?.length, result, items: cart?.items })
     return result;
   }
 
   const toggleCart = (productId) => {
-    console.log('🔄 toggleCart called with productId:', productId)
     if (isInCart(productId)) {
-      console.log('➖ Item IN cart, removing...')
       removeFromCartMutation.mutate(productId)
     } else {
-      console.log('➕ Item NOT in cart, adding...')
+
       addToCartMutation.mutate(productId)
     }
   }
 
   return {
     cart,
+    isSuccess,
+    isError,
+    isLoading,
     addToCart: addToCartMutation.mutate,
     updateCartItem: updateCartItemMutation.mutate,
     removeFromCart: removeFromCartMutation.mutate,
