@@ -82,8 +82,13 @@ export async function addToCart(req, res) {
 export async function updateCartItem(req, res) {
   try {
     const { productId } = req.params
+    console.log(productId)
 
     const { quantity } = req.body;
+
+    if (quantity < 1) {
+      return res.status(403).json({ erro: "Cannot update to zero or lower values" })
+    }
 
     const cart = await Cart.findOne({ clerkId: req.user.clerkId }).populate('items.product')
 
@@ -91,7 +96,7 @@ export async function updateCartItem(req, res) {
       return res.status(404).json({ error: "Cart not found" })
     }
 
-    const itemIndex = cart.items.findIndex((item) => item.product.toString() === productId)
+    const itemIndex = cart.items.findIndex((item) => item.product._id.toString() === productId)
 
     if (itemIndex === -1) {
       return res.status(404).json({ error: "Product not found" })
