@@ -1,5 +1,6 @@
 import { LoaderIcon, Minus, Plus, Trash2 } from "lucide-react";
 import useCart from "../hooks/useCart"
+import roundNumber from "../utils/roundNumber";
 
 const CartPage = () => {
 
@@ -37,7 +38,7 @@ const CartPage = () => {
               </div>
               <div className="flex flex-col gap-2 w-[65%]">
                 <h1 className="text-white text-md font-semibold">{product.name}</h1>
-                <p className="text-green-400 font-semibold gap-2 flex items-center text-xl">₹{(product.price * quantity).toFixed(2)} <span className="text-white/60 text-xs font-normal">₹{Math.round(product.price * 100) / 100} each</span></p>
+                <p className="text-green-400 font-semibold gap-2 flex items-center text-xl">₹{(product.price * quantity).toFixed(2)} <span className="text-white/60 text-xs font-normal">₹{roundNumber(product.price)} each</span></p>
 
                 <div className="flex justify-between w-full items-center">
                   <div className="flex items-center gap-4">
@@ -66,7 +67,7 @@ const CartPage = () => {
           <h1 className="text-white text-lg font-semibold">Summary</h1>
           <div className="w-full flex justify-between mt-3">
             <p className="text-md text-white/50">Subtotal</p>
-            <p className="text-white">₹{Math.round(subTotal * 100) / 100}</p>
+            <p className="text-white">₹{roundNumber(subTotal)}</p>
           </div>
           <div className="w-full flex justify-between">
             <p className="text-md text-white/50">Shipping Charge</p>
@@ -74,7 +75,7 @@ const CartPage = () => {
           </div>
           <div className="flex flex-row justify-between mt-3">
             <p className="text-white font-semibold text-lg">Total</p>
-            <p className="font-bold text-green-400 text-xl">₹{Math.round((subTotal + 10) * 100) / 100}</p>
+            <p className="font-bold text-green-400 text-xl">₹{roundNumber(subTotal + 10)}</p>
           </div>
         </div>
       </div>
