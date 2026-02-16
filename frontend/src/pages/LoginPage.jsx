@@ -11,7 +11,7 @@ const LoginPage = () => {
       const res = await signIn.authenticateWithRedirect({
         strategy,
         redirectUrl: '/sso',
-        redirectUrlComplete: '/sb'
+        redirectUrlComplete: '/'
       })
 
       console.log(res)
