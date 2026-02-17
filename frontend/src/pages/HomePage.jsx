@@ -95,7 +95,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      <ul className="flex items-center px-7 mt-3 overflow-x-auto no-scrollbar gap-3 scroll-smooth">
+      <ul className="flex items-center px-7 mt-3 no-scrollbar gap-3">
         {categories.map((category) => (
           <li key={category.id} className={`first-child bg-[#222222] text-gray-300 flex justify-center items-center ${selectedCategory === category.title ? 'bg-green-500 text-slate-900' : 'hover:bg-[#313131]'} rounded-2xl`}>
             <button className="w-14.5 p-4 flex justify-center items-center cursor-pointer h-full" onClick={() => updateCategory(category.title)}>
