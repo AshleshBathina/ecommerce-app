@@ -1,6 +1,12 @@
 const ProfilePage = () => {
   return (
-    <div>Hi</div>
+    <div className="space-y-6">
+      <div className="flex flex-col">
+        <div className="bg-[#222222] px-4">
+
+        </div>
+      </div>
+    </div>
   )
 }
 
