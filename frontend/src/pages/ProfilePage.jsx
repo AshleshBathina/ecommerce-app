@@ -15,13 +15,13 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
-      <div className="flex px-7">
-        <div className="bg-[#222222] rounded-3xl flex flex-col items-center p-6">
+      <div className="flex px-7 py-4">
+        <button className="bg-[#222222] rounded-3xl flex flex-col items-center p-8">
           <div className="">
-            <User className="size-6" />
+            <User className="size-8 text-white" />
           </div>
-          <h1 className="">Edit Profile</h1>
-        </div>
+          <h1 className="text-white font-medium mt-2">Edit Profile</h1>
+        </button>
       </div>
     </div>
   )
