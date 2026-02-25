@@ -16,6 +16,8 @@ const CartPage = () => {
   const updateProductQuantity = ({ productId, quantity }) => {
     if (quantity > 0) {
       updateCartItem({ productId, quantity });
+    } else {
+      removeFromCart(productId);
     }
   }
 
