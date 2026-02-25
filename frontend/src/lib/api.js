@@ -50,3 +50,22 @@ export const cartApi = {
     return data
   }
 }
+
+export const ordersApi = {
+  getUserOrders: async () => {
+    const { data } = await axiosInstance.get('/orders/')
+    return data.orders
+  },
+}
+
+export const userApi = {
+  getAddresses: async () => {
+    const { data } = await axiosInstance.get('/users/addresses')
+    return data.addresses
+  },
+
+  getWishlist: async () => {
+    const { data } = await axiosInstance.get('/users/wishlist')
+    return data.wishlist
+  }
+}

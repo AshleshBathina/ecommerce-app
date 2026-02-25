@@ -37,7 +37,7 @@ export async function addToCart(req, res) {
       return res.status(400).json({ error: "Insufficient stock" })
     }
 
-    const cart = await Cart.findOne({ clerkId: req.user.clerkId }).populate('items.product')
+    let cart = await Cart.findOne({ clerkId: req.user.clerkId }).populate('items.product')
 
     if (!cart) {
       const user = req.user;
@@ -116,7 +116,10 @@ export async function updateCartItem(req, res) {
 
     await cart.save()
 
-    res.status(200).json({ message: "Cart updated successfully" })
+    // Re-populate after save to ensure frontend gets full product details
+    await cart.populate('items.product')
+
+    res.status(200).json({ message: "Cart updated successfully", cart })
   } catch (error) {
     console.error("Error in updateCartItem controller", error)
     res.status(500).json({ error: "Internal server error" })
