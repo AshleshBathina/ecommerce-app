@@ -137,7 +137,7 @@ const ProfilePage = () => {
             )}
             {/* verified badge */}
             <span className="absolute bottom-0 right-0 bg-green-500 rounded-full p-0.5">
-              <CheckCircle2 className="size-3.5 text-white fill-white" />
+              <CheckCircle2 className="size-3.5 text-white fill-green-500" />
             </span>
           </div>
 
