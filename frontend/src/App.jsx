@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage"
 import HomePage from './pages/HomePage'
 import CartPage from './pages/CartPage'
 import ProfilePage from './pages/ProfilePage'
+import AddressesPage from './pages/AddressesPage'
 
 import PageLoader from './components/PageLoader'
 import DashboardLayout from './layouts/DashboardLayout'
@@ -25,6 +26,8 @@ function App() {
         <Route path="cart" element={<CartPage />} />
         <Route path="profile" element={<ProfilePage />} />
       </Route>
+      {/* No navbar on this page */}
+      <Route path='/addresses' element={isSignedIn ? <AddressesPage /> : <Navigate to={'/login'} />} />
     </Routes>
   )
 }
