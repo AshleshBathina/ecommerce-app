@@ -64,6 +64,21 @@ export const userApi = {
     return data.addresses
   },
 
+  addAddress: async (addressData) => {
+    const { data } = await axiosInstance.post('/users/addresses', addressData)
+    return data.addresses
+  },
+
+  updateAddress: async ({ addressId, ...addressData }) => {
+    const { data } = await axiosInstance.put(`/users/addresses/${addressId}`, addressData)
+    return data.addresses
+  },
+
+  deleteAddress: async (addressId) => {
+    const { data } = await axiosInstance.delete(`/users/addresses/${addressId}`)
+    return data.addresses
+  },
+
   getWishlist: async () => {
     const { data } = await axiosInstance.get('/users/wishlist')
     return data.wishlist

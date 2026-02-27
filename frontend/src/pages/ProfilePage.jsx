@@ -100,7 +100,7 @@ const ProfilePage = () => {
       icon: <MapPin className="size-6" style={{ color: "#FF9F0A" }} />,
       label: `Addresses${addresses.length ? ` (${addresses.length})` : ""}`,
       accent: "#FF9F0A",
-      onClick: () => { },
+      onClick: () => navigate("/addresses"),
     },
     {
       icon: <Heart className="size-6" style={{ color: "#FF375F" }} />,
