@@ -177,7 +177,7 @@ const HomePage = () => {
         <div className="flex flex-1">
 
           {/* Category sidebar */}
-          <aside className="w-52 shrink-0 border-r border-[#1A1A1A] pt-6 pb-8 px-4 sticky top-[73px] self-start h-[calc(100vh-73px)] overflow-y-auto">
+          <aside className="w-52 shrink-0 border-r border-[#1A1A1A] pt-6 pb-8 px-4 sticky top-18.5 self-start h-[calc(100vh-73px)] overflow-y-auto">
             <p className="text-[#555] text-[11px] uppercase tracking-widest font-semibold mb-3 px-2">Categories</p>
             <ul className="flex flex-col gap-1">
               {categories.map((category) => {
