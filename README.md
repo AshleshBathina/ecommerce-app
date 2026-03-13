@@ -1,4 +1,4 @@
-# 🛒 E-Commerce Platform
+# 🛒 Ashoppp
 
 A full-stack e-commerce solution consisting of three applications: a **customer-facing storefront**, an **admin dashboard**, and a **REST API backend**.
 
