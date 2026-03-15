@@ -38,6 +38,7 @@ The customer-facing frontend of the [Ashoppp](https://ashoppp.vercel.app/) e-com
 | Path | Page |
 |---|---|
 | `/login` | Login (Google / Apple OAuth) |
+| `/sso-callback` | Clerk SSO callback handler |
 | `/home` | Product listing |
 | `/cart` | Shopping cart |
 | `/profile` | User profile |
@@ -68,7 +69,7 @@ VITE_API_URL=http://localhost:3000
 npm run dev
 ```
 
-> Storefront runs on **http://localhost:5174**
+> Storefront runs on **http://localhost:5173**
 
 ---
 
