@@ -152,10 +152,6 @@ const FIELD_CONFIGS = [
 
 
 
-/* ─── DesktopAddressModal (desktop only) ──────────────────── */
-
-
-
 /* ─── main page ──────────────────────────────────────────────── */
 
 const AddressesPage = () => {

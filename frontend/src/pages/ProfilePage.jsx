@@ -15,9 +15,6 @@ import {
 import { useNavigate } from "react-router"
 import getInitials from "../utils/getInitials"
 
-/* ─── tiny helpers ─────────────────────────────────────────── */
-
-
 
 /* ─── sub-components ────────────────────────────────────────── */
 
