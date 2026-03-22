@@ -17,8 +17,6 @@ import {
 import { AddressForm, DesktopAddressModal } from "../modals/AddressFormModal"
 import { AddressCard, DesktopAddressCard } from "../components/AddressCard"
 
-/* ─── helpers ─────────────────────────────────────────────── */
-
 const LABEL_ICONS = {
   Home: <Home className="size-4" />,
   Work: <Briefcase className="size-4" />,
